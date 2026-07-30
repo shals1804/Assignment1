@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 
+
 test('EventHub login page loads,', async ({page}) => {
 
 /*
@@ -16,8 +17,17 @@ test('EventHub login page loads,', async ({page}) => {
   await expect(signInButton).toBeVisible();
 });
 
-async function openLoginPage(page) {
+export async function openLoginPage(page) 
+{
     await page.goto('https://eventhub.rahulshettyacademy.com/login');
+    const heading = await page.getByRole('heading', { name: 'Sign in to EventHub' });
+    await expect (heading).toBeVisible(); 
+}
+
+async function getEmailfield(page)
+{
+  const emailtextbox = page.getByPlaceholder('you@email.com');
+  return emailtextbox;
 }
 
 test('Simple login page test',async({page}) =>
@@ -32,4 +42,14 @@ test('Simple login page test',async({page}) =>
      //Assert the heading Sign in to EventHub is visible
      const heading = page.getByRole('button', { name: 'Sign In' });
      await expect(heading).toBeVisible();
+});
+
+
+test('Validate playwright config structure', () => {
+  // 1. Assert that use.baseURL exists and is defined
+  expect(config.use?.baseURL).toBeDefined();
+  expect(typeof config.use?.baseURL).toBe('string');
+
+  // 2. Assert that there are exactly two browser projects configured
+  expect(config.projects).toHaveLength(2);
 });
