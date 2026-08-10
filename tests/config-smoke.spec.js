@@ -21,6 +21,7 @@ test('Another Check',async ({page}) =>
     await emailField.fill('beginner@sample.com');
     // Confirm the email field still shows/retains that exact value
     await expect(emailField).toHaveValue('beginner@sample.com');
+    await page.pause();
 });
 
     test('Verify fresh context initialization and empty initial state', async ({ browser}) => {
@@ -37,6 +38,7 @@ test('Another Check',async ({page}) =>
         const email = newPage.getByPlaceholder('you@email.com');
         await expect (email).toBeEmpty();
         await context.close();
+        
 });
 
 /**
